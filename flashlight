@@ -1,0 +1,46 @@
+import tkinter as tk
+
+class FlashlightApp:
+    def _init_(self, root):
+        self.root = root
+        self.root.title("Flashlight App")
+        self.root.geometry("400x300")
+        self.root.configure(bg="black")
+        self.is_on = False
+
+        # Title label
+        self.title_label = tk.Label(root, text="Flashlight", font=("Arial", 24), fg="white", bg="black")
+        self.title_label.pack(pady=20)
+
+        # Flashlight frame
+        self.flashlight_frame = tk.Frame(root, width=200, height=200, bg="black")
+        self.flashlight_frame.pack(pady=10)
+
+        # Toggle button
+        self.toggle_btn = tk.Button(root, text="Turn ON", font=("Arial", 16), command=self.toggle_flashlight)
+        self.toggle_btn.pack(pady=10)
+
+        # Status label
+        self.status_label = tk.Label(root, text="Flashlight is OFF", font=("Arial", 12), fg="white", bg="black")
+        self.status_label.pack()
+
+    def toggle_flashlight(self):
+        if self.is_on:
+            self.root.configure(bg="black")
+            self.flashlight_frame.configure(bg="black")
+            self.title_label.configure(fg="white", bg="black")
+            self.status_label.configure(text="Flashlight is OFF", fg="white", bg="black")
+            self.toggle_btn.configure(text="Turn ON")
+            self.is_on = False
+        else:
+            self.root.configure(bg="white")
+            self.flashlight_frame.configure(bg="white")
+            self.title_label.configure(fg="black", bg="white")
+            self.status_label.configure(text="Flashlight is ON", fg="black", bg="white")
+            self.toggle_btn.configure(text="Turn OFF")
+            self.is_on = True
+
+if _name_ == "_main_":
+    root = tk.Tk()
+    app = FlashlightApp(root)
+    root.mainloop()
